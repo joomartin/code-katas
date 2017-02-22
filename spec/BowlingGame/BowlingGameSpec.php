@@ -10,13 +10,13 @@ class BowlingGameSpec extends ObjectBehavior
     function it_scores_a_gutter_game_as_zero()
     {
         $this->rollTimes(20, 0);
-        $this->score()->shouldReturn(0);
+        $this->score()->shouldBe(0);
     }
 
     function it_scores_the_sum_of_all_knocked_down_pins_for_a_game()
     {
         $this->rollTimes(20, 1);
-        $this->score()->shouldReturn(20);
+        $this->score()->shouldBe(20);
     }
     
     function it_awards_a_one_roll_bonus_for_every_spare()
@@ -26,7 +26,7 @@ class BowlingGameSpec extends ObjectBehavior
 
         $this->rollTimes(17, 0);
 
-        $this->score()->shouldReturn(20);
+        $this->score()->shouldBe(20);
     }
     
     function it_awards_a_two_roll_bonus_for_a_strike_in_the_previous_frame()
@@ -36,13 +36,13 @@ class BowlingGameSpec extends ObjectBehavior
         $this->roll(2);
 
         $this->rollTimes(17, 0);
-        $this->score()->shouldReturn(28);
+        $this->score()->shouldBe(28);
     }
 
     function it_scores_a_perfect_game() 
     {
         $this->rollTimes(12, 10);
-        $this->score()->shouldReturn(300);
+        $this->score()->shouldBe(300);
     }
     
     function it_throws_exception_with_invalid_rolls()
