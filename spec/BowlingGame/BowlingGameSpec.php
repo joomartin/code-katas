@@ -52,8 +52,11 @@ class BowlingGameSpec extends ObjectBehavior
 
     private function rollSpare()
     {
-        $this->roll(2);
-        $this->roll(8);
+        $first = rand(1, 9);
+        $second = 10 - $first;
+        
+        $this->roll($first);
+        $this->roll($second);
     }
 
     private function rollTimes($times, $pins)
