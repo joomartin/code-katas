@@ -29,11 +29,17 @@ class BinarySearchSpec extends ObjectBehavior
         $this->search(3, [1, 3, 5])->shouldEqual(1);
         $this->search(5, [1, 3, 5])->shouldEqual(2);
 
+        $this->search(1, [1, 3, 5, 7, 8, 9])->shouldEqual(0);
+        $this->search(3, [1, 3, 5, 7, 8, 9])->shouldEqual(1);
+        $this->search(5, [1, 3, 5, 7, 8, 9])->shouldEqual(2);
         $this->search(7, [1, 3, 5, 7, 8, 9])->shouldEqual(3);
         $this->search(8, [1, 3, 5, 7, 8, 9])->shouldEqual(4);
         $this->search(9, [1, 3, 5, 7, 8, 9])->shouldEqual(5);
 
-        $this->search(13, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])->shouldEqual(12);
+        $range = range(1, 128);
+        foreach ($range as $i) {
+            $this->search($i, $range)->shouldEqual($i - 1);
+        }
     }
 
     // -------- half --------
