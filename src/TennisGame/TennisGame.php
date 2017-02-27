@@ -13,16 +13,22 @@ class TennisGame
      */
     private $player2;
 
-    protected $lookup = [
+    /**
+     * @var array
+     */
+    private $lookup = [
         0 => 'Love',
         1 => 'Fifteen',
         2 => 'Thirty',
         3 => 'Forty'
     ];
 
+    /**
+     * @param Player $player1
+     * @param Player $player2
+     */
     public function __construct(Player $player1, Player $player2)
     {
-
         $this->player1 = $player1;
         $this->player2 = $player2;
     }
@@ -56,40 +62,6 @@ class TennisGame
     }
 
     /**
-     * @return Player
-     */
-    private function leader()
-    {
-        return $this->player1->points > $this->player2->points
-            ? $this->player1
-            : $this->player2;
-    }
-
-    /**
-     * @return bool
-     */
-    private function tied()
-    {
-        return $this->player1->points == $this->player2->points;
-    }
-
-    /**
-     * @return bool
-     */
-    private function hasEnoughPointsToBeWon()
-    {
-        return max($this->player1->points, $this->player2->points) >= 4;
-    }
-
-    /**
-     * @return number
-     */
-    private function isLeadingByAtLeastTwo()
-    {
-        return abs($this->player1->points - $this->player2->points) >= 2;
-    }
-
-    /**
      * @return bool
      */
     private function hasTheAdvantage()
@@ -119,8 +91,42 @@ class TennisGame
     /**
      * @return bool
      */
+    private function hasEnoughPointsToBeWon()
+    {
+        return max($this->player1->points, $this->player2->points) >= 4;
+    }
+
+    /**
+     * @return bool
+     */
+    private function isLeadingByAtLeastTwo()
+    {
+        return abs($this->player1->points - $this->player2->points) >= 2;
+    }
+
+    /**
+     * @return bool
+     */
     private function isLeadingByOne()
     {
         return abs($this->player1->points - $this->player2->points) == 1;
+    }
+
+    /**
+     * @return Player
+     */
+    private function leader()
+    {
+        return $this->player1->points > $this->player2->points
+            ? $this->player1
+            : $this->player2;
+    }
+
+    /**
+     * @return bool
+     */
+    private function tied()
+    {
+        return $this->player1->points == $this->player2->points;
     }
 }
